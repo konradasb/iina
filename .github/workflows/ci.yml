@@ -13,7 +13,7 @@ jobs:
         include:
           - xcode: "16.4"
             deployment_target: ""
-    runs-on:  macos-15
+    runs-on:  getmac-latest
     steps:
       - uses: actions/checkout@v4
 
@@ -25,8 +25,11 @@ jobs:
         env:
           DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode }}.app/Contents/Developer
 
+      - name: Show directory
+        run: ls -la /Users/runner/Library/Developer/Xcode/DerivedData
+
       - name: Archive
-        run: tar cvJf ~/iina.tar.xz -C /Users/runner/Library/Developer/Xcode/DerivedData/iina-csbkugdtxazzqogjnydbothqrvib/Build/Products/Nightly IINA.app 
+        run: tar cvJf ~/iina.tar.xz -C /Users/runner/Library/Developer/Xcode/DerivedData/iina-apugdjpqouleppezboaylpbjonar/Build/Products/Nightly IINA.app 
 
       - name: Save artifacts
         uses: actions/upload-artifact@v4
